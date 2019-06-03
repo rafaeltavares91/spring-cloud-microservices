@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.photoapp.api.users.dto.CreateUserRequestModel;
 import com.photoapp.api.users.dto.UserDTO;
-import com.photoapp.api.users.dto.UserResponseModel;
+import com.photoapp.api.users.dto.CreateUserResponseModel;
 import com.photoapp.api.users.service.UserService;
 
 @RestController
@@ -36,12 +36,12 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<UserResponseModel> createUser(@Valid @RequestBody CreateUserRequestModel userDetails) {
+	public ResponseEntity<CreateUserResponseModel> createUser(@Valid @RequestBody CreateUserRequestModel userDetails) {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		UserDTO userDTO = mapper.map(userDetails, UserDTO.class);
 		
-		UserResponseModel createdUser = userSevice.createUser(userDTO);
+		CreateUserResponseModel createdUser = userSevice.createUser(userDTO);
 		
 		return ResponseEntity
 				.status(HttpStatus.CREATED)

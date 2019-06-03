@@ -1,10 +1,10 @@
 package com.photoapp.api.users.service;
 
 import com.photoapp.api.users.dto.UserDTO;
-import com.photoapp.api.users.dto.UserResponseModel;
+import com.photoapp.api.users.dto.CreateUserResponseModel;
 
 public interface UserService {
 
-	UserResponseModel createUser(UserDTO userDTO);
+	CreateUserResponseModel createUser(UserDTO userDTO);
 	
 }

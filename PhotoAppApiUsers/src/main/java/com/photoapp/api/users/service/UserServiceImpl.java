@@ -51,5 +51,16 @@ public class UserServiceImpl implements UserService {
 		return new org.springframework.security.core.userdetails.User(
 				user.getEmail(), user.getEncryptedPassword(), true, true, true, true, new ArrayList<>());
 	}
+
+	@Override
+	public UserDTO getUserDTOByEmail(String email) {
+		User user = userRepository.findByEmail(email);
+		
+		if (user == null) {
+			throw new UsernameNotFoundException(email);
+		}
+		
+		return new ModelMapper().map(user, UserDTO.class);
+	}
 	
 }

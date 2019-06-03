@@ -9,5 +9,7 @@ import com.photoapp.api.users.dto.CreateUserResponseModel;
 public interface UserService extends UserDetailsService {
 
 	CreateUserResponseModel createUser(UserDTO userDTO);
+
+	UserDTO getUserDTOByEmail(String userName);
 	
 }

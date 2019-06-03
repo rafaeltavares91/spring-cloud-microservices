@@ -31,11 +31,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			.antMatchers("/**")
 			.hasIpAddress(environment.getProperty("gateway.ip"))
 			.and().addFilter(getAuthenticationFilter());
+		http.headers().frameOptions().disable();
 	}
 	
 	private AuthenticationFilter getAuthenticationFilter() throws Exception {
 		AuthenticationFilter authenticationFilter = new AuthenticationFilter(environment, userService, authenticationManager());
-		authenticationFilter.setFilterProcessesUrl(environment.getProperty("url.path.login")); 
+		authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path")); 
 		return authenticationFilter;
 	}
 	
